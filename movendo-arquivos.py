@@ -9,27 +9,51 @@ from pprint import pprint
 hoje = date.today()
 print("\nOi, hoje %s vou ajudá-lo a trabalhar com seus arquivos!" %hoje)
 
-#Vamos escolher o diretório
+#Escolhendo o diretório
+#local = os.getcwd()
+#Alterei o diretório para teste
+local = os.chdir("/home/miti/Documentos/pasta2")
 local = os.getcwd()
 print("Nós estamos aqui: %s" %local)
 print("Quer mudar de diretório?")
+print("Digite: 1-Sim ou 2-Não")
+quero = int(input("-->  "))
 
-quero = input("sim ou nao?:  ")
+if quero == 1:
+    print("                         ")
+    print("Qual o nome do diretório?")
+    diretorio = str(input("--> "))
+    local = os.chdir(diretorio)
+    arquivos = os.listdir(local)
+    print("estes são os arquivos existentes na pasta")
+    print(arquivos)
 
-if quero == sim:
-    print("Vamos escolher um diretório para trabalhar!")
-else:
-    print("Vamos ficar aqui: ")    
+if quero == 2:
+    print("                         ")
+    arquivos = os.listdir(local)
+    print("Okay, estes são os arquivos existentes na pasta") 
+    print(arquivos)  
+
+elif quero != 1:
+        print("\n------------Vamos de novo------------")
 
 cond = 0
 while cond <= 5:
         
     print("\nO que deseja fazer? ") 
-    print("|| 1-Copiar || 2-Mover || 3-Deletar || \n")
-    opcao = input( "Digite o valor: \n")
+    print("|| 1-Copiar || 2-Mover || 3-Deletar ||")
+    opcao = int(input("--> "))
 
     if opcao == 1:
-        print("Vamos Copiar")
+        destino = str(input("Digite o destino: "))
+        
+        for arquivo in arquivos:
+            shutil.copy(arquivo, destino)
+        
+        print("Os arquivos foram copiados")
+        destino = os.listdir(destino)
+        print(destino)    
+        
         break
     if opcao == 2:
         print("Vamos Mover")
@@ -41,24 +65,3 @@ while cond <= 5:
     elif opcao != 1:
         cond += 1
         print("\n------------Vamos de novo------------")
-        
-        
-
-"""
-print("Informe o diretório que iremos ")
-#Vamos agora listar as pastas do diretório
-
-pasta = "/home/infra/Documentos/%s/dez" % cliente
-
-
-    #Alterando o caminho atual de trabalho para pasta *Origem
-    origem = os.chdir(pasta)
-
-    #Exibindo onde estou
-    #destino = os.getcwd()
-
-    #Listando o que tem no diretório
-    origem = os.listdir()
-    #pprint(origem)
-"""
-

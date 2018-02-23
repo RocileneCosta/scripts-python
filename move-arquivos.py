@@ -11,17 +11,21 @@ def VerificaArquivo (diretorio, arquivo):
     existe = os.path.isfile(caminho)
     return existe
 
+def MudaDiretorio (caminho):
+    diretorio = os.chdir(caminho)
+    arquivos = os.listdir(diretorio)
+    print("Os aquivos da pasta são estes: %s" %arquivos)
+    
 hoje = date.today()
 print("\nOi, hoje %s vou ajudá-lo a trabalhar com seus arquivos!" %hoje)
-print("Insira o caminho do diretório em que iremos trabalhar.")
-print("Como nos exemplos abaixo: \n--> /home/seu-usuario/Documentos/ *Documentos*\n--> /home/seu-usuario/.local/share/Trash/files/ *Lixeira*")
+print("exemplos de caminho: \n--> /home/seu-usuario/Documentos/ *Documentos*\n--> /home/seu-usuario/.local/share/Trash/files/ *Lixeira*")
 print("                         ")
+caminho1 = str(input("Insira o caminho do diretório de origem --> "))
+MudaDiretorio(caminho1)
 
-caminho = str(input("--> "))
-origem = os.chdir(caminho)
-arquivos = os.listdir(origem)
-print("\n Estes são os arquivos existentes na pasta:")
-print(arquivos)
+print("                         ")
+caminho2 = str(input("Insira o caminho do diretório de destino --> "))
+MudaDiretorio(caminho2)
 
 #         /home/miti/Documentos/pasta2/
 cond = 0
@@ -29,12 +33,11 @@ while cond <= 5:
         
     print("\nO que deseja fazer? ") 
     print("|| 1-Copiar || 2-Mover || 3-Deletar ||")
+    print("Ou ctrl+c para sair")
     opcao = int(input("--> "))
-# estou em pasta2
 
     if opcao == 1:
-        caminho = str(input("Digite o destino: "))
-
+        
         for arquivo in arquivos:
             verifica = "%s%s" % (caminho, arquivo)
             existe = os.path.isfile(verifica)
